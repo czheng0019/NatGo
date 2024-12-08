@@ -1,10 +1,15 @@
-var secrets = require('../secrets');
+var secrets = require('./secrets.js');
+var User = require('..models/user');
+const mongoose = require('mongoose');
+
+mongoose.connect(secrets.mongo_connection, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true
+});
 
 module.exports = function (router) {
 
-    var homeRoute = router.route('/');
-
-    homeRoute.get(function (req, res) {
+	router.get('/', function (req, res) {
         var connectionString = secrets.token;
         res.json({ message: 'My connection string is ' + connectionString });
     });
