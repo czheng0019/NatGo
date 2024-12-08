@@ -3,23 +3,43 @@ import '../styles/signin.css';
 
 const Signin = () => {
   // State for the form fields
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Basic validation
-    if (!email || !password) {
-      setError("Both email and password are required.");
+    if (!username || !email || !password) {
+      setError("username, email, and password are all required.");
       return;
     }
 
+	try {
+		const response = await fetch("http://localhost:1000", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({username, email, password})
+		});
+
+		const result = await response.json();
+
+		if (!response.ok) {
+			setError(result.message);
+		}
+
+	} catch (err) {
+		setError("failed to connect to the server");
+	}
     // You can handle your authentication here, e.g., by calling an API
     console.log("Signed in with email:", email);
     // Reset the form on successful submit
+	setUsername("");
     setEmail("");
     setPassword("");
     setError(""); // Clear any previous errors
@@ -30,6 +50,18 @@ const Signin = () => {
       <h2>Sign In</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <form onSubmit={handleSubmit}>
+	  <div className="form-group">
+          <label htmlFor="username">Username:</label>
+          <input
+            type="username"
+            id="username"
+            name="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Enter your username"
+            required
+          />
+        </div>
         <div className="form-group">
           <label htmlFor="email">Email:</label>
           <input
