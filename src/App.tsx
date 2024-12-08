@@ -10,6 +10,9 @@ import {
 	useParams
 } from "react-router-dom";
 
+// import components
+import SignIn from './routes/signin';
+
 var secrets = require('./secrets.js');
 
 interface Park {
@@ -33,13 +36,16 @@ function App() {
 	return (
 		<Router>
 			<div className="App">
-				<ul>
+				<Routes>
+					<Route path="/" element={<SignIn />}></Route>
+				</Routes>
+				{/* <ul>
 					{parkList.map((park) => (
 						<li key={park.id}>
 							<p>{park.name}</p>
 						</li>
 					))}
-				</ul>
+				</ul> */}
 			</div>
 		</Router>
 	);
