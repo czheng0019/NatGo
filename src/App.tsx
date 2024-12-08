@@ -19,7 +19,7 @@ interface Park {
 	designation: string;
 	description: string;
 	state: string;
-	image_url: string;
+	image: string;
 }
   
 function App() {
@@ -37,6 +37,7 @@ function App() {
 					{parkList.map((park) => (
 						<li key={park.id}>
 							<p>{park.name}</p>
+							<img src={park.image} alt={park.name} />
 						</li>
 					))}
 				</ul>
@@ -59,7 +60,7 @@ const fetchAllParks = async (setParkList: React.Dispatch<React.SetStateAction<Pa
 			designation: park.designation,
 			description: park.description,
 			state: park.state,
-			image_url: park.image_url
+			image_url: park.images[0].url
 		}));
 
 		parks.push(...fetchedParks);
