@@ -60,7 +60,7 @@ const fetchAllParks = async (setParkList: React.Dispatch<React.SetStateAction<Pa
 			designation: park.designation,
 			description: park.description,
 			state: park.state,
-			image_url: park.images[0].url
+			image: park.images[0].url
 		}));
 
 		parks.push(...fetchedParks);
