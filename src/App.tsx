@@ -11,22 +11,13 @@ import {
 } from "react-router-dom";
 
 import SignIn from './routes/signin';
-
+import ParkGallery from './routes/ParkGallery';
+import ParkDetail from './routes/ParkDetail';
+import { Park } from './types';
 
 var secrets = require('./secrets.js');
-
-interface Park {
-	id: string;
-	fullName: string;
-	name: string;
-	designation: string;
-	description: string;
-	state: string;
-	image: string;
-}
   
 function App() {
-
 	const [parkList, setParkList] = useState<Park[]>([]);
 
 	useEffect(() => {
@@ -38,6 +29,7 @@ function App() {
 			<div className="App">
 				<Routes>
 					<Route path="/" element={<SignIn />}></Route>
+					<Route path="/parks" element={<ParkGallery parkList={parkList} />} />
 				</Routes>
 				{/* <ul>
 					{parkList.map((park) => (
