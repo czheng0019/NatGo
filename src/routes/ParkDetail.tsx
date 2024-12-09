@@ -21,7 +21,6 @@ const ParkDetail: React.FC<ParkDetailProps> = ({ parkList }) => {
 				});
 
 				const result = await response.json();
-				console.log(result);
 		
 				if (!response.ok) {
 					console.log(result.message);
@@ -44,10 +43,8 @@ const ParkDetail: React.FC<ParkDetailProps> = ({ parkList }) => {
 	const handleChange = async () => {
 		const newChecked = !checked;
 		setChecked(newChecked);
-		console.log(newChecked);
 
 		try {
-			console.log(userId);
 			const response = await fetch("http://localhost:1000/parks/:id", {
 				method: "PUT",
 				headers: {
@@ -61,9 +58,6 @@ const ParkDetail: React.FC<ParkDetailProps> = ({ parkList }) => {
 			if (!response.ok) {
 				console.log(result.message);
 			}
-
-			const checkId = result.parkId;
-			console.log(checkId);
 
 		} catch (err) {
 			console.log("failed to connect to the server");
