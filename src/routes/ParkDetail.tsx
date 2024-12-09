@@ -7,7 +7,8 @@ interface ParkDetailProps {
 }
 
 const ParkDetail: React.FC<ParkDetailProps> = ({ parkList }) => {
-    const { parkId } = useParams<{ parkId: string }>();
+	const params = useParams();
+    const parkId = params.id;
     const park = parkList.find(p => p.id === parkId);
 
     if (!park) return <div>Park not found</div>;

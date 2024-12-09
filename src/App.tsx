@@ -30,6 +30,7 @@ function App() {
 				<Routes>
 					<Route path="/" element={<SignIn />}></Route>
 					<Route path="/parks" element={<ParkGallery parkList={parkList} />} />
+					<Route path="/parks/:id" element={<ParkDetail parkList={parkList} />} />
 				</Routes>
 				{/* <ul>
 					{parkList.map((park) => (
