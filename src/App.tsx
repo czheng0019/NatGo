@@ -28,18 +28,10 @@ function App() {
 		<Router>
 			<div className="App">
 				<Routes>
-					<Route path="/" element={<SignIn />}></Route>
+					<Route path="/" element={<SignIn />} />
 					<Route path="/parks" element={<ParkGallery parkList={parkList} />} />
-					<Route path="/parks/:id" element={<ParkDetail parkList={parkList} />} />
+					<Route path="/parks/:id" element={<ParkDetail parkList={parkList}/>} />
 				</Routes>
-				{/* <ul>
-					{parkList.map((park) => (
-						<li key={park.id}>
-							<p>{park.name}</p>
-							<img src={park.image} alt={park.name} />
-						</li>
-					))}
-				</ul> */}
 			</div>
 		</Router>
 	);

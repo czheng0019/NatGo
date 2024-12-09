@@ -28,9 +28,16 @@ const Signin = () => {
 		});
 
 		const result = await response.json();
+		console.log(result);
 
 		if (!response.ok) {
 			setError(result.message);
+		}
+		const userId = result.userId;
+
+		if (userId) {
+			localStorage.setItem("userId", userId);
+			console.log(localStorage.json());
 		}
 
 	} catch (err) {

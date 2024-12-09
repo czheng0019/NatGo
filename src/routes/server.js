@@ -8,9 +8,7 @@ import User from "../models/user.js"
 
 const app = express();
 app.use(bodyParser.json());
-app.use(cors({
-	origin: "http://localhost:3000",
-}));
+app.use(cors());
 
 mongoose.connect(secrets.mongo_connection, {
 	useNewUrlParser: true,
@@ -39,8 +37,45 @@ app.post("/", async (req, res) => { // TODO: this is actually signin and is curr
 		});
 
 		await newUser.save();
-		res.status(200).json({message: "user has been created"})
+		console.log("user created successfully");
+		res.status(200).json({ userId: newUser._id });
 	} catch (error) {
+		res.status(500).json({message: "server error"});
+	}
+})
+
+app.put("/parks/:id", async (req, res) => {
+	const { userId, parkId, newChecked } = req.body;
+	try {
+		const user = await User.findById(userId);
+
+		if (!Array.isArray(user.collectedParks)) {
+			user.collectedParks = [];
+		}
+
+		if (newChecked) {
+			user.collectedParks.push(parkId);
+			console.log("park has been added to user");
+		} else {
+			user.collectedParks = user.collectedParks.filter(id => id !== parkId);
+			console.log("park has been deleted from user");
+		}
+
+		await user.save();
+		res.status(200).json({ parkId: parkId });
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({message: "server error"});
+	}
+})
+
+app.get("/users/:id/collectedParks", async (req, res) => {
+	const userId = req.params.id;
+	try {
+		const user = await User.findById(userId);
+		res.status(200).json({ collectedParks: user.collectedParks });
+	} catch (error) {
+		console.log(error);
 		res.status(500).json({message: "server error"});
 	}
 })
