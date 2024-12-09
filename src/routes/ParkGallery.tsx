@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Park } from '../types';
+import '../styles/ParkGallery.css';
 
 interface ParkGalleryProps {
     parkList: Park[];
@@ -55,19 +56,19 @@ const ParkGallery: React.FC<ParkGalleryProps> = ({ parkList }) => {
                         className="park-card" 
                         onClick={() => handleParkClick(park.id)}
                     >
-                        <img 
-                            src={park.image} 
-                            alt={park.name} 
-                            onError={(e) => {
-                                const imgElement = e.target as HTMLImageElement;
-                                imgElement.src = 'path/to/placeholder-image.jpg'; // add later (or add carousel?)
-                            }}
-                        />
-                        <div className="park-info">
-                            <h3>{park.name}</h3>
-                            <p>{park.designation}</p>
-                            <p>{park.state}</p>
-                        </div>
+						<div className="image-container">
+							<img 
+								src={park.image} 
+								alt=""
+								onError={(e) => {
+									const imgElement = e.target as HTMLImageElement;
+									imgElement.src = 'path/to/placeholder-image.jpg'; // add later (or add carousel?)
+								}}
+							/>
+							<div className="park-info">
+								<h3>{park.name}</h3>
+							</div>
+						</div>
                     </div>
                 ))}
             </div>
