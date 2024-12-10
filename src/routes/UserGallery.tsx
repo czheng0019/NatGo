@@ -94,7 +94,7 @@ const UserGallery: React.FC<UserGalleryProps> = ({ parkList, totalParkCount }) =
 					{parkList.map((park, index) => (
 						<div 
 							key={park.id} 
-							className="park-card" 
+							className="user-park-card" 
 						>
 							<div className="image-container">
 								{collectedParks.includes(park.id) ? (
