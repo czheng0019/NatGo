@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Park } from '../types';
+import '../styles/ParkDetail.css';
 
 interface ParkDetailProps {
     parkList: Park[];
@@ -75,31 +76,31 @@ const ParkDetail: React.FC<ParkDetailProps> = ({ parkList }) => {
 			<button type="submit" onClick={handleGalleryClick}>Go To Gallery</button>
             <div className="park-detail-content">
 				<div>
-					<label>
-						<input
-							type="checkbox"
-							checked={checked}
-							onChange={handleChange}
-						/>
-						I have been here:
-					</label>
-				</div>
-				<div>
 					<img 
 						src={park.image} 
 						alt={park.name}
 						onError={(e) => {
 							const imgElement = e.target as HTMLImageElement;
-							imgElement.src = 'path/to/placeholder-image.jpg'; // add later (carousel)?
+							imgElement.src = 'path/to/placeholder-image.jpg';
 						}}
 					/>
+					<div className="checkbox-container">
+						<label>
+							<input
+								type="checkbox"
+								checked={checked}
+								onChange={handleChange}
+							/>
+							I have been here!
+						</label>
+					</div>
 					<div className="park-detail">
-						<h2>{park.designation}</h2>
+						<h3>{park.designation}</h3>
 						<p><strong>State(s):</strong> {park.state}</p>
 						<p>{park.description}</p>
 					</div>
 				</div>
-            </div>
+			</div>
         </div>
     );
 };

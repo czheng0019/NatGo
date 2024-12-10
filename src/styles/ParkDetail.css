@@ -1,0 +1,138 @@
+body {
+    background-color: #CBB18C;  
+    font-family: 'Inter', sans-serif;
+}
+
+.park-detail {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #CBB18C;
+}
+
+.park-detail h1 {
+    color: #825632;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #825632;
+    padding-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.park-detail button {
+    display: block;
+    margin: 0 auto 20px;
+    padding: 12px 25px;
+    background-color: #9c7f57;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.park-detail button:hover {
+    background-color: #825632;
+    transform: scale(1.05);
+}
+
+.park-detail-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.park-detail-content .checkbox-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 0;
+    background-color: rgba(130, 86, 50, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.park-detail-content label {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    color: #825632;
+}
+
+.park-detail-content input[type="checkbox"] {
+    margin-right: 10px;
+    transform: scale(1.2);
+    accent-color: #9c7f57;
+}
+
+.park-detail-content img {
+    max-width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(130, 86, 50, 0.2);
+    border: 4px solid #9c7f57;
+}
+
+.park-detail-content .park-detail {
+    text-align: center;
+    margin-top: 20px;
+    background-color: transparent;
+    max-width: 100%;
+    padding: 0;
+}
+
+.park-detail-content .park-detail-text {
+    background-color: rgba(130, 86, 50, 0.1);
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 100%;
+    border: 2px solid #9c7f57;
+}
+
+.park-detail-content h3 {
+    color: #825632;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #9c7f57;
+    padding-bottom: 10px;
+}
+
+.park-detail-content p {
+    color: #825632;
+    line-height: 1.7;
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: left;
+}
+
+@media (min-width: 770px) {
+    .park-detail-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .park-detail-content img,
+    .park-detail-content .park-detail-text {
+        width: 100%;
+        max-width: 800px;
+    }
+}
+
+@media (max-width: 770px) {
+    .park-detail {
+        padding: 10px;
+    }
+
+    .park-detail h1 {
+        font-size: 2rem;
+    }
+
+    .park-detail-content img {
+        max-height: 300px;
+    }
+}
