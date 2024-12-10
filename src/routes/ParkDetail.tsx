@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Park } from '../types';
 
 interface ParkDetailProps {
@@ -8,6 +8,7 @@ interface ParkDetailProps {
 
 const ParkDetail: React.FC<ParkDetailProps> = ({ parkList }) => {
 	const params = useParams();
+    const navigate = useNavigate();
     const parkId = params.id;
     const park = parkList.find(p => p.id === parkId);
 	const [checked, setChecked] = React.useState(false);
@@ -64,9 +65,14 @@ const ParkDetail: React.FC<ParkDetailProps> = ({ parkList }) => {
 		}
 	};
 
+	const handleGalleryClick = (): void => {
+        navigate(`/parks`);
+    };
+
     return (
         <div className="park-detail">
             <h1>{park.fullName}</h1>
+			<button type="submit" onClick={handleGalleryClick}>Go To Gallery</button>
             <div className="park-detail-content">
 				<div>
 					<label>
