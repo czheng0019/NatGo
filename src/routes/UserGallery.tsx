@@ -2,17 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Park } from '../types';
 import '../styles/ParkGallery.css';
-import User from "../models/user.js"
+import { IntegerType } from 'mongodb';
 
 interface UserGalleryProps {
     parkList: Park[];
+	totalParkCount: number;
 }
 
-const UserGallery: React.FC<UserGalleryProps> = ({ parkList }) => {
+const UserGallery: React.FC<UserGalleryProps> = ({ parkList, totalParkCount }) => {
     const navigate = useNavigate();
 	const userId = localStorage.getItem("userId");
 	const [collectedParks, setCollectedParks] = useState<string[]>([]);
 	const [username, setUsername] = useState<string>();
+	const [parkCount, setParkCount] = useState<number>();
 
 	useEffect(() => {
 		const fetchUsername = async () => {
@@ -54,6 +56,7 @@ const UserGallery: React.FC<UserGalleryProps> = ({ parkList }) => {
 				}
 
 				setCollectedParks(result.collectedParks);
+				setParkCount(result.collectedParks.length)
 				console.log("Collected parks:", result.collectedParks);
 		
 			} catch (err) {
@@ -83,6 +86,7 @@ const UserGallery: React.FC<UserGalleryProps> = ({ parkList }) => {
 				</div>
 				<button type="submit" onClick={handleGalleryClick}>Go To Gallery</button>
 				<button type="submit" onClick={handleSignoutClick}>Signout</button>
+				<div className="park-count">Collected Parks: {parkCount} / {totalParkCount} </div>
 			</div>
 			<div className="park-gallery">
 	
