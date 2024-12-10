@@ -1,0 +1,107 @@
+.park-gallery {
+    padding: 16px;
+}
+
+.filters {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+input[type="text"] {
+    padding: 8px;
+    width: 60%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.parks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 160px);
+    gap: 16px;
+	grid-auto-rows: 230px;
+}
+
+.park-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    position: relative;
+}
+
+.park-card:hover {
+    transform: scale(1.05);
+}
+
+.image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.park-info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+	background-color:rgba(0, 0, 0, 0.1);
+	height: 100%;
+	width: 100%;
+	padding-top: 100%;
+    z-index: 1;
+}
+
+.collected-park-check {
+    position: absolute;
+    top: 15%;
+    left: 85%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+	height: 100%;
+	width: 100%;
+	padding-top: 100%;
+    z-index: 1;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+  
+button:hover {
+background-color: #45a049;
+}

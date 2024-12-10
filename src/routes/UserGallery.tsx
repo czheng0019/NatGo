@@ -1,0 +1,120 @@
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Park } from '../types';
+import '../styles/ParkGallery.css';
+import User from "../models/user.js"
+
+interface UserGalleryProps {
+    parkList: Park[];
+}
+
+const UserGallery: React.FC<UserGalleryProps> = ({ parkList }) => {
+    const navigate = useNavigate();
+	const userId = localStorage.getItem("userId");
+	const [collectedParks, setCollectedParks] = useState<string[]>([]);
+	const [username, setUsername] = useState<string>();
+
+	useEffect(() => {
+		const fetchUsername = async () => {
+			try {
+				const response = await fetch(`http://localhost:1000/users/${userId}`, {
+					method: "GET",
+				});
+
+				const result = await response.json();
+		
+				if (!response.ok) {
+					console.log(result.message);
+				}
+
+				setUsername(result.username);
+				console.log(result.username);
+		
+			} catch (err) {
+				console.log("failed to connect to the server: " + err);
+			}
+		};
+		
+		if (userId) {
+			fetchUsername();
+		}
+	}, [userId]);
+
+	useEffect(() => {
+		const fetchCollectedParks = async () => {
+			try {
+				const response = await fetch(`http://localhost:1000/users/${userId}/collectedParks`, {
+					method: "GET",
+				});
+
+				const result = await response.json();
+		
+				if (!response.ok) {
+					console.log(result.message);
+				}
+
+				setCollectedParks(result.collectedParks);
+				console.log("Collected parks:", result.collectedParks);
+		
+			} catch (err) {
+				console.log("failed to connect to the server: " + err);
+			}
+		};
+		
+		if (userId) {
+			fetchCollectedParks();
+		}
+	}, [userId]);
+
+	const handleGalleryClick = (): void => {
+        navigate(`/parks`);
+    };
+
+	const handleSignoutClick = (): void => {
+        navigate(`/`);
+		localStorage.removeItem("userId");
+    };
+
+    return (
+		<div className="user-profile">
+			<div className="user-info">
+				<div className="user-name">
+					Hi {username}
+				</div>
+				<button type="submit" onClick={handleGalleryClick}>Go To Gallery</button>
+				<button type="submit" onClick={handleSignoutClick}>Signout</button>
+			</div>
+			<div className="park-gallery">
+	
+				<div className="parks-grid">
+					{parkList.map(park => (
+						<div 
+							key={park.id} 
+							className="park-card" 
+						>
+							<div className="image-container">
+								{collectedParks.includes(park.id) && (
+									<img 
+										src={park.image} 
+										alt=""
+										onError={(e) => {
+											const imgElement = e.target as HTMLImageElement;
+											imgElement.src = 'path/to/placeholder-image.jpg'; // add later (or add carousel?)
+										}}
+									/>
+								)}
+								{collectedParks.includes(park.id) && (
+									<div className="park-info">
+										<h3>{park.name}</h3>
+									</div>
+								)}
+							</div>
+						</div>
+					))}
+				</div>
+        	</div>
+		</div>
+    );
+};
+
+export default UserGallery;
