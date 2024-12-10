@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { Park } from '../types';
-// import '../styles/ParkCard.css';
+import '../styles/parkcard.css';
 
 interface ParkCardProps {
     park: Park;

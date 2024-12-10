@@ -1,31 +1,73 @@
+
+.body {
+    background-color: #CBB18C;  
+    font-family: 'Inter', sans-serif;
+}
 .park-gallery {
-    padding: 16px;
+    background-color: #CBB18C;
 }
 
 .filters {
     display: flex;
-    justify-content: space-between;
     margin-bottom: 16px;
+    top: 0;
+    margin-top: 0px;
+    padding-top: 0px;
+    width: 100%;
+}
+
+header{
+    display: flex;
+    background-color: #825632; 
+    width: 100%;
+    height: 100px;
+    justify-content: center;
 }
 
 input[type="text"] {
     padding: 8px;
-    width: 60%;
+    width: 65%;
     border: 1px solid #ccc;
     border-radius: 4px;
+    height: 50px;
+    margin-top: 15px;
+    margin-left: 30px;
 }
 
 select {
     padding: 8px;
-    border: 1px solid #ccc;
+    border: none;
     border-radius: 4px;
+    height: 50px;
+    margin-top: 23px;
+    margin-right: 40px;
+    transition: all 0.3s ease;
+    color: white;
+    background-color: #CBB18C;
+    margin-left: 8px;
+
 }
+
+select:hover {
+    border: none;
+    background-color: #9c7f57;
+    color: #000; /* Make text darker on hover */
+}
+
+select:focus {
+    box-shadow: 0 0 10px rgba(130, 86, 50, 0.5); /* Glow effect on focus */
+    border-color: #825632; /* Emphasize border */
+}
+
 
 .parks-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, 160px);
     gap: 16px;
 	grid-auto-rows: 230px;
+    background-color: #CBB18C;
+    justify-content: center;
+    margin-bottom: 30px;
 }
 
 .park-card {
@@ -94,7 +136,7 @@ select {
 button {
     width: 100%;
     padding: 10px;
-    background-color: #4CAF50;
+    background-color: #9c7f57;
     color: white;
     border: none;
     border-radius: 4px;
@@ -102,7 +144,7 @@ button {
 }
   
 button:hover {
-background-color: #45a049;
+    background-color: #825632;
 }
 
 .park-number {
@@ -122,3 +164,29 @@ background-color: #45a049;
 	padding-top: 100%;
     z-index: 1;
 }
+
+/* Button styles */
+.user_profile_button {
+    background-color: #CBB18C;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 25px;
+    border-radius: 50%;  
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;  
+    height: 50px;  
+    margin-top: 20px;
+    margin-left: 20px;
+    
+  }
+  
+  .user_profile_button:hover {
+    background-color: #9c7f57;
+  }
+  
+  

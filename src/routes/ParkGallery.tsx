@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { Park } from '../types';
 import '../styles/ParkGallery.css';
 import ParkCard from './parkcard';
+import 'font-awesome/css/font-awesome.min.css';
+
 
 interface ParkGalleryProps {
     parkList: Park[];
@@ -106,13 +108,14 @@ const ParkGallery: React.FC<ParkGalleryProps> = ({ parkList }) => {
     return (
         <div className="park-gallery">
             <div className="filters">
+				<header>
                 <input
                     type="text"
                     placeholder="Search parks..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
-                <select value={stateFilter} onChange={(e) => setStateFilter(e.target.value)}>
+				<select value={stateFilter} onChange={(e) => setStateFilter(e.target.value)}>
                     <option value="">All States</option>
                     {uniqueStates.map((state) => (
                         <option key={state} value={state}>
@@ -120,9 +123,10 @@ const ParkGallery: React.FC<ParkGalleryProps> = ({ parkList }) => {
                         </option>
                     ))}
                 </select>
-                <button type="submit" onClick={handleUserClick}>
-                    Go To User Profile
+				<button className="user_profile_button" onClick={handleUserClick}>
+					<i className="fa fa-user"></i> {/* Font Awesome icon */}
                 </button>
+				</header>
             </div>
 
             <div className="parks-grid">
@@ -138,7 +142,7 @@ const ParkGallery: React.FC<ParkGalleryProps> = ({ parkList }) => {
 
             {paginatedParks.length < filteredParks.length && (
                 <button onClick={handleNext} className="next-button">
-                    Next
+                    Load More
                 </button>
             )}
         </div>
