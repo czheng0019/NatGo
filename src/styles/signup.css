@@ -26,6 +26,11 @@ body {
   }
   
   /* text */
+  .signin-container h1 {
+    font-size: 50px;
+    color: #85737F;
+  }
+  
   .signin-container h2 {
     font-size: 75px;
     color: #c8929fa1;

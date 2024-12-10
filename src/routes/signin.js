@@ -58,6 +58,7 @@ const Signin = () => {
   return (
     <div className="signin-container">
       {error && <p style={{ color: "red" }}>{error}</p>}
+      <h1>Welcome to NatGo!</h1>
       <form onSubmit={handleSubmit}>
         <h2>Hi there!</h2>
         <h3>Sign in to get started</h3>

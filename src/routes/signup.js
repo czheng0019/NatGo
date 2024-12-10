@@ -59,6 +59,7 @@ const Signup = () => {
   return (
     <div className="signin-container">
       {error && <p style={{ color: "red" }}>{error}</p>}
+      <h1>Wecome to NatGo!</h1>
       <form onSubmit={handleSubmit}>
       <h2>Sign up to get started today!</h2>
 	  	<div className="form-group">
