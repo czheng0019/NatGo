@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Park } from '../types';
-import '../styles/ParkGallery.css';
+import '../styles/usergallery.css';
+import { IntegerType } from 'mongodb';
 
 interface UserGalleryProps {
     parkList: Park[];
@@ -93,7 +94,7 @@ const UserGallery: React.FC<UserGalleryProps> = ({ parkList, totalParkCount }) =
 					{parkList.map((park, index) => (
 						<div 
 							key={park.id} 
-							className="user-park-card" 
+							className="park-card" 
 						>
 							<div className="image-container">
 								{collectedParks.includes(park.id) ? (
