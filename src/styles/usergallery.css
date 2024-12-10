@@ -4,15 +4,15 @@
 
 .user-name{
     color: white;
-    margin-left: 50px;
+    margin-left: 0px;
     font-size: 30px;
-    margin-top: 30px;
+    margin-top: 35px;
 }
 
 .park-count{
     color: white;
     font-size: 25px;
-    margin-top: 35px; 
+    margin-top: 38px; 
     margin-right: 20px;
     margin-left: 50px;
 }
@@ -31,7 +31,7 @@
 
 .gallery_button{
     width: 10%;
-    margin-left: 20px;
+    margin-left: 650px;
     height: 50px;
     margin-top: 25px;
     background-color: #78c7ee; 
