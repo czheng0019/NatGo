@@ -15,7 +15,7 @@ const ParkCard = forwardRef<HTMLDivElement, ParkCardProps>(
                 <div className="image-container">
                     <img
                         src={park.image}
-                        alt={park.name}
+                        alt={""}
                         onError={(e) => {
                             const imgElement = e.target as HTMLImageElement;
                             imgElement.src = '/path/to/placeholder-image.jpg';
