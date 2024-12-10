@@ -1,0 +1,15 @@
+.collected-park-check input[type="checkbox"] {
+    width: 24px;
+    height: 24px;
+	background-color: #fff;
+    border: 2px solid #5e5e5e;
+    border-radius: 4px;
+	transition: background-color 0.3s, border-color 0.3s;
+	cursor: pointer;
+}
+
+.collected-park-check input[type="checkbox"]:checked {
+	accent-color: #825632;
+    background-color: #825632;
+    border-color: #825632;
+} 
