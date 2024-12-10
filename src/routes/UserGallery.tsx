@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Park } from '../types';
-import '../styles/ParkGallery.css';
+import '../styles/usergallery.css';
 import { IntegerType } from 'mongodb';
 
 interface UserGalleryProps {
@@ -84,13 +84,13 @@ const UserGallery: React.FC<UserGalleryProps> = ({ parkList, totalParkCount }) =
 				<div className="user-name">
 					Hi {username}
 				</div>
-				<button type="submit" onClick={handleGalleryClick}>Go To Gallery</button>
-				<button type="submit" onClick={handleSignoutClick}>Signout</button>
 				<div className="park-count">Collected Parks: {parkCount} / {totalParkCount} </div>
+				<button className="gallery_button"  onClick={handleGalleryClick}>Go To Gallery</button>
+				<button className="signout_button" onClick={handleSignoutClick}>Signout</button>
 			</div>
 			<div className="park-gallery">
 	
-				<div className="parks-grid">
+				<div className="parks-grid-user">
 					{parkList.map((park, index) => (
 						<div 
 							key={park.id} 
