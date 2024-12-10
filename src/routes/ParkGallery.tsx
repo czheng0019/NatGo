@@ -88,11 +88,6 @@ const ParkGallery: React.FC<ParkGalleryProps> = ({ parkList }) => {
         }
     };
 
-    // Navigate to park details
-    const handleParkClick = (parkId: string) => {
-        navigate(`/parks/${parkId}`);
-    };
-
     // Navigate to user profile
     const handleUserClick = (): void => {
         navigate(`/users/${userId}`);

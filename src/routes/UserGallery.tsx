@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Park } from '../types';
 import '../styles/ParkGallery.css';
-import { IntegerType } from 'mongodb';
 
 interface UserGalleryProps {
     parkList: Park[];

@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react';
 import { Park } from '../types';
+import { useNavigate } from 'react-router-dom';
 import '../styles/parkcard.css';
 
 interface ParkCardProps {
@@ -10,8 +11,15 @@ interface ParkCardProps {
 
 const ParkCard = forwardRef<HTMLDivElement, ParkCardProps>(
     ({ park, isCollected, onToggle }, ref) => {
+		const navigate = useNavigate();
+
+		// Navigate to park details
+		const handleParkClick = (parkId: string) => {
+			navigate(`/parks/${parkId}`);
+		};
+
         return (
-            <div ref={ref} className="park-card" onClick={() => console.log(`Park clicked: ${park.id}`)}>
+            <div ref={ref} className="park-card" onClick={() => handleParkClick(park.id)}>
                 <div className="image-container">
                     <img
                         src={park.image}
