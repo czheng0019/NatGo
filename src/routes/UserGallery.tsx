@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Park } from '../types';
-<<<<<<< HEAD
 import '../styles/ParkGallery.css';
-=======
-import '../styles/usergallery.css';
-import { IntegerType } from 'mongodb';
->>>>>>> emily-edits-4.0
 
 interface UserGalleryProps {
     parkList: Park[];
