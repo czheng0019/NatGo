@@ -91,13 +91,13 @@ const UserGallery: React.FC<UserGalleryProps> = ({ parkList, totalParkCount }) =
 			<div className="park-gallery">
 	
 				<div className="parks-grid">
-					{parkList.map(park => (
+					{parkList.map((park, index) => (
 						<div 
 							key={park.id} 
 							className="park-card" 
 						>
 							<div className="image-container">
-								{collectedParks.includes(park.id) && (
+								{collectedParks.includes(park.id) ? (
 									<img 
 										src={park.image} 
 										alt=""
@@ -106,6 +106,10 @@ const UserGallery: React.FC<UserGalleryProps> = ({ parkList, totalParkCount }) =
 											imgElement.src = 'path/to/placeholder-image.jpg'; // add later (or add carousel?)
 										}}
 									/>
+                                ) : (
+									<div className="park-number">
+										<div>{index + 1}</div>
+									</div>
 								)}
 								{collectedParks.includes(park.id) && (
 									<div className="park-info">
