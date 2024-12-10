@@ -53,6 +53,34 @@ const ParkGallery: React.FC<ParkGalleryProps> = ({ parkList }) => {
 		}
 	}, [userId]);
 
+	const handleChange = async (parkId: string) => {
+		const isChecked = collectedParks.includes(parkId);
+        const updatedCollectedParks = isChecked
+            ? collectedParks.filter(id => id !== parkId)
+            : [...collectedParks, parkId];
+
+        setCollectedParks(updatedCollectedParks);
+
+		try {
+			const response = await fetch("http://localhost:1000/parks/:id", {
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({userId, parkId, newChecked: !isChecked})
+			});
+	
+			const result = await response.json();
+	
+			if (!response.ok) {
+				console.log(result.message);
+			}
+
+		} catch (err) {
+			console.log("failed to connect to the server");
+		}
+	};
+
     const handleParkClick = (parkId: string) => {
         navigate(`/parks/${parkId}`);
     };
@@ -100,9 +128,17 @@ const ParkGallery: React.FC<ParkGalleryProps> = ({ parkList }) => {
 								}}
 							/>
 							<div className="collected-park-check">
-								{collectedParks.includes(park.id) && (
-									<p>✅</p>
-                            	)}
+								<label>
+									<input
+										type="checkbox"
+										checked={collectedParks.includes(park.id)}
+										onClick={(e) => e.stopPropagation()}
+										onChange={(e) => {
+											e.stopPropagation();
+											handleChange(park.id);
+										}}
+									/>
+								</label>
 							</div>
 							<div className="park-info">
 								<h3>{park.name}</h3>
