@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import '../styles/signin.css';
 
 const Signin = () => {
   // State for the form fields
-  const [username, setUsername] = useState("");
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -13,8 +14,8 @@ const Signin = () => {
     e.preventDefault();
 
     // Basic validation
-    if (!username || !email || !password) {
-      setError("username, email, and password are all required.");
+    if (!email || !password) {
+      setError("email and password are all required.");
       return;
     }
 
@@ -24,7 +25,7 @@ const Signin = () => {
 			headers: {
 				"Content-Type": "application/json",
 			},
-			body: JSON.stringify({username, email, password})
+			body: JSON.stringify({email, password})
 		});
 
 		const result = await response.json();
@@ -32,6 +33,7 @@ const Signin = () => {
 
 		if (!response.ok) {
 			setError(result.message);
+			return;
 		}
 		const userId = result.userId;
 
@@ -46,10 +48,11 @@ const Signin = () => {
     // You can handle your authentication here, e.g., by calling an API
     console.log("Signed in with email:", email);
     // Reset the form on successful submit
-	setUsername("");
     setEmail("");
     setPassword("");
     setError(""); // Clear any previous errors
+	const userId = localStorage.getItem("userId");
+	navigate(`/users/${userId}`);
   };
 
   return (
@@ -57,18 +60,6 @@ const Signin = () => {
       <h2>Sign In</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <form onSubmit={handleSubmit}>
-	  <div className="form-group">
-          <label htmlFor="username">Username:</label>
-          <input
-            type="username"
-            id="username"
-            name="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="Enter your username"
-            required
-          />
-        </div>
         <div className="form-group">
           <label htmlFor="email">Email:</label>
           <input

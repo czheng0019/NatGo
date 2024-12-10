@@ -15,10 +15,34 @@ mongoose.connect(secrets.mongo_connection, {
 	useUnifiedTopology: true
 });
 
-app.post("/", async (req, res) => { // TODO: this is actually signin and is currently functioning as signup, fix this later
-	const { username, email, password } = req.body;
+app.post("/", async (req, res) => {
+	const { email, password } = req.body;
 	try {
 		if (!email || !password) {
+			return res.status(400).json({message: "all fields are required"});
+		}
+
+		const user = await User.findOne({email});
+		if (!user) {
+			return res.status(400).json({message: "email not found"});
+		}
+
+		const match = await bcrypt.compare(password, user.password);
+		if (!match) {
+			return res.status(400).json({message: "incorrect password"});
+		}
+
+		console.log("user found successfully");
+		res.status(200).json({ userId: user._id });
+	} catch (error) {
+		res.status(500).json({message: "server error"});
+	}
+})
+
+app.post("/signup", async (req, res) => {
+	const { username, email, password } = req.body;
+	try {
+		if (!username || !email || !password) {
 			return res.status(400).json({message: "all fields are required"});
 		}
 
@@ -74,6 +98,17 @@ app.get("/users/:id/collectedParks", async (req, res) => {
 	try {
 		const user = await User.findById(userId);
 		res.status(200).json({ collectedParks: user.collectedParks });
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({message: "server error"});
+	}
+})
+
+app.get("/users/:id", async (req, res) => {
+	const userId = req.params.id;
+	try {
+		const user = await User.findById(userId);
+		res.status(200).json({ username: user.username });
 	} catch (error) {
 		console.log(error);
 		res.status(500).json({message: "server error"});

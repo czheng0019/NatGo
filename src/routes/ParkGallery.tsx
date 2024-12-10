@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Park } from '../types';
 import '../styles/ParkGallery.css';
@@ -11,6 +11,8 @@ const ParkGallery: React.FC<ParkGalleryProps> = ({ parkList }) => {
     const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');
     const [stateFilter, setStateFilter] = useState('');
+	const userId = localStorage.getItem("userId");
+	const [collectedParks, setCollectedParks] = useState<string[]>([]);
 
     const filteredParks = parkList.filter(park => 
         park.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
@@ -25,9 +27,40 @@ const ParkGallery: React.FC<ParkGalleryProps> = ({ parkList }) => {
         )
     ).sort();
 
+	useEffect(() => {
+		const fetchCollectedParks = async () => {
+			try {
+				const response = await fetch(`http://localhost:1000/users/${userId}/collectedParks`, {
+					method: "GET",
+				});
+
+				const result = await response.json();
+		
+				if (!response.ok) {
+					console.log(result.message);
+				}
+
+				setCollectedParks(result.collectedParks);
+				console.log("Collected parks:", result.collectedParks);
+		
+			} catch (err) {
+				console.log("failed to connect to the server: " + err);
+			}
+		};
+		
+		if (userId) {
+			fetchCollectedParks();
+		}
+	}, [userId]);
+
     const handleParkClick = (parkId: string) => {
         navigate(`/parks/${parkId}`);
     };
+
+	const handleUserClick = (): void => {
+        navigate(`/users/${userId}`);
+    };
+
 
     return (
         <div className="park-gallery">
@@ -47,6 +80,7 @@ const ParkGallery: React.FC<ParkGalleryProps> = ({ parkList }) => {
                         <option key={state} value={state}>{state}</option>
                     ))}
                 </select>
+				<button type="submit" onClick={handleUserClick}>Go To User Profile</button>
             </div>
 
             <div className="parks-grid">
@@ -65,6 +99,11 @@ const ParkGallery: React.FC<ParkGalleryProps> = ({ parkList }) => {
 									imgElement.src = 'path/to/placeholder-image.jpg'; // add later (or add carousel?)
 								}}
 							/>
+							<div className="collected-park-check">
+								{collectedParks.includes(park.id) && (
+									<p>✅</p>
+                            	)}
+							</div>
 							<div className="park-info">
 								<h3>{park.name}</h3>
 							</div>

@@ -11,8 +11,10 @@ import {
 } from "react-router-dom";
 
 import SignIn from './routes/signin';
+import SignUp from './routes/signup';
 import ParkGallery from './routes/ParkGallery';
 import ParkDetail from './routes/ParkDetail';
+import UserGallery from './routes/UserGallery';
 import { Park } from './types';
 
 var secrets = require('./secrets.js');
@@ -29,8 +31,10 @@ function App() {
 			<div className="App">
 				<Routes>
 					<Route path="/" element={<SignIn />} />
+					<Route path="/signup" element={<SignUp />} />
 					<Route path="/parks" element={<ParkGallery parkList={parkList} />} />
 					<Route path="/parks/:id" element={<ParkDetail parkList={parkList}/>} />
+					<Route path="/users/:id" element={<UserGallery parkList={parkList}/>} />
 				</Routes>
 			</div>
 		</Router>
@@ -51,7 +55,7 @@ const fetchAllParks = async (setParkList: React.Dispatch<React.SetStateAction<Pa
 			designation: park.designation,
 			description: park.description,
 			state: park.states,
-			image: park.images[0].url
+			image: park.images?.[0]?.url || null
 		}));
 
 		parks.push(...fetchedParks);
