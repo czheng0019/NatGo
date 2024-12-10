@@ -32,7 +32,6 @@ app.post("/", async (req, res) => {
 			return res.status(400).json({message: "incorrect password"});
 		}
 
-		console.log("user found successfully");
 		res.status(200).json({ userId: user._id });
 	} catch (error) {
 		res.status(500).json({message: "server error"});
@@ -61,7 +60,6 @@ app.post("/signup", async (req, res) => {
 		});
 
 		await newUser.save();
-		console.log("user created successfully");
 		res.status(200).json({ userId: newUser._id });
 	} catch (error) {
 		res.status(500).json({message: "server error"});
@@ -79,10 +77,8 @@ app.put("/parks/:id", async (req, res) => {
 
 		if (newChecked) {
 			user.collectedParks.push(parkId);
-			console.log("park has been added to user");
 		} else {
 			user.collectedParks = user.collectedParks.filter(id => id !== parkId);
-			console.log("park has been deleted from user");
 		}
 
 		await user.save();

@@ -31,7 +31,7 @@ input[type="text"] {
     border-radius: 4px;
     height: 50px;
     margin-top: 15px;
-    margin-left: 30px;
+    margin-left: 200px;
 }
 
 select {
@@ -68,6 +68,19 @@ select:focus {
     background-color: #CBB18C;
     justify-content: center;
     margin-bottom: 30px;
+}
+
+.user-park-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    position: relative;
+	z-index:1
 }
 
 .park-card {
@@ -182,7 +195,7 @@ button:hover {
     width: 50px;  
     height: 50px;  
     margin-top: 20px;
-    margin-left: 20px;
+    margin-left: 60px;
     
   }
   
