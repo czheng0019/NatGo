@@ -77,8 +77,7 @@ select {
 
 .collected-park-check {
     position: absolute;
-    top: 15%;
-    left: 85%;
+    left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
     color: white;
@@ -88,8 +87,8 @@ select {
     font-weight: bold;
 	height: 100%;
 	width: 100%;
-	padding-top: 100%;
-    z-index: 1;
+	padding-top: 50%;
+    z-index: 3;
 }
 
 button {
@@ -104,4 +103,22 @@ button {
   
 button:hover {
 background-color: #45a049;
+}
+
+.park-number {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 24px;
+    font-weight: bold;
+	background-color:rgba(0, 0, 0, 0.1);
+	height: 100%;
+	width: 100%;
+	padding-top: 100%;
+    z-index: 1;
 }
