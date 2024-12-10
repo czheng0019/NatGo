@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import '../styles/signin.css';
+import '../styles/signup.css';
 
 const Signup = () => {
   // State for the form fields
@@ -58,9 +58,9 @@ const Signup = () => {
 
   return (
     <div className="signin-container">
-      <h2>Sign Up</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <form onSubmit={handleSubmit}>
+      <h2>Sign up to get started today!</h2>
 	  	<div className="form-group">
           <label htmlFor="username">Username:</label>
           <input
