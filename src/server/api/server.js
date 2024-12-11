@@ -9,7 +9,9 @@ dotenv.config()
 
 const app = express();
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({
+	origin: "*",
+}));
 
 mongoose.connect(process.env.REACT_APP_mongo_connection, {
   useNewUrlParser: true,
