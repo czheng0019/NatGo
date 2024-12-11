@@ -2,21 +2,23 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import bcrypt from "bcrypt";
 import User from "../models/user.js";
-import dotenv from 'dotenv'
+import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 
-var app = express(); 
+var app = express();
 dotenv.config();
 
 app.use(bodyParser.json());
 
-app.use(cors({
-	origin: "https://nat-go.vercel.app",
-	methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-	allowedHeaders: ["Content-Type", "Authorization"],
-	credentials: true,
-  }));
+app.use(
+  cors({
+    origin: "https://nat-go.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
 
 mongoose.connect(process.env.mongo_connection, {
   useNewUrlParser: true,
@@ -40,12 +42,12 @@ app.post("/", async (req, res) => {
       return res.status(400).json({ message: "incorrect password" });
     }
 
-	res.cookie("session_id", user._id, {
-		httpOnly: true,
-		secure: true,
-		sameSite: "None",
-		path: "/",
-	});
+    res.cookie("session_id", user._id, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+      path: "/",
+    });
 
     res.status(200).json({ userId: user._id });
   } catch (error) {
@@ -127,7 +129,7 @@ app.get("/users/:id", async (req, res) => {
 });
 
 app.get("/ping", async (req, res) => {
-	res.status(200).json({ message: "hello world" });
+  res.status(200).json({ message: "hello world" });
 });
 
 const PORT = 1000;
