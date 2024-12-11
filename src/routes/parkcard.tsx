@@ -2,6 +2,7 @@ import React, { forwardRef, useEffect, useState } from 'react';
 import { Park } from '../types';
 import { useNavigate } from 'react-router-dom';
 import '../styles/parkcard.css';
+var secrets = require('../secrets.js');
 
 interface ParkCardProps {
     park: Park;
@@ -23,7 +24,7 @@ const ParkCard = forwardRef<HTMLDivElement, ParkCardProps>(
 		useEffect(() => {
 			const fetchCollectedParks = async () => {
 				try {
-					const response = await fetch(`http://localhost:1000/users/${userId}/collectedParks`, {
+					const response = await fetch(`${secrets.backend_url}/users/${userId}/collectedParks`, {
 						method: 'GET',
 					});
 
@@ -55,7 +56,7 @@ const ParkCard = forwardRef<HTMLDivElement, ParkCardProps>(
 			setCollectedParks(updatedCollectedParks);
 	
 			try {
-				const response = await fetch(`http://localhost:1000/parks/:id`, {
+				const response = await fetch(`${secrets.backend_url}/parks/:id`, {
 					method: 'PUT',
 					headers: {
 						'Content-Type': 'application/json',

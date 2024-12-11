@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Park } from '../types';
 import '../styles/usergallery.css';
-import { IntegerType } from 'mongodb';
+var secrets = require('../secrets.js');
+
 
 interface UserGalleryProps {
     parkList: Park[];
@@ -19,7 +20,7 @@ const UserGallery: React.FC<UserGalleryProps> = ({ parkList, totalParkCount }) =
 	useEffect(() => {
 		const fetchUsername = async () => {
 			try {
-				const response = await fetch(`http://localhost:1000/users/${userId}`, {
+				const response = await fetch(`${secrets.backend_url}/users/${userId}`, {
 					method: "GET",
 				});
 
@@ -45,7 +46,7 @@ const UserGallery: React.FC<UserGalleryProps> = ({ parkList, totalParkCount }) =
 	useEffect(() => {
 		const fetchCollectedParks = async () => {
 			try {
-				const response = await fetch(`http://localhost:1000/users/${userId}/collectedParks`, {
+				const response = await fetch(`${secrets.backend_url}/users/${userId}/collectedParks`, {
 					method: "GET",
 				});
 

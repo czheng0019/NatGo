@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import '../styles/signup.css';
+var secrets = require('../secrets.js');
 
 const Signup = () => {
   // State for the form fields
@@ -21,7 +22,7 @@ const Signup = () => {
     }
 
 	try {
-		const response = await fetch("http://localhost:1000/signup", {
+		const response = await fetch(`${secrets.backend_url}/signup`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",

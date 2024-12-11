@@ -5,7 +5,6 @@ import '../styles/ParkGallery.css';
 import ParkCard from './parkcard';
 import 'font-awesome/css/font-awesome.min.css';
 
-
 interface ParkGalleryProps {
     parkList: Park[];
 }
