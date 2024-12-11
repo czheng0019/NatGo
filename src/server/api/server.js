@@ -35,6 +35,12 @@ app.post("/", async (req, res) => {
       return res.status(400).json({ message: "incorrect password" });
     }
 
+	res.cookie("session_id", user._id, {
+		httpOnly: true,
+		secure: true,
+		sameSite: "None",
+	});
+
     res.status(200).json({ userId: user._id });
   } catch (error) {
     res.status(500).json({ message: "server error" });
