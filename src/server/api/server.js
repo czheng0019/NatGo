@@ -11,19 +11,12 @@ dotenv.config();
 
 app.use(bodyParser.json());
 
-app.use((req, res, next) => {
-	res.header("Access-Control-Allow-Origin", "https://nat-go.vercel.app");
-	res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-	res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-	res.header("Access-Control-Allow-Credentials", "true");
-	
-	if (req.method === "OPTIONS") {
-	  return res.status(200).send();
-	}
-  
-	next();
-});	
-  
+app.use(cors({
+	origin: "https://nat-go.vercel.app",
+	methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+	allowedHeaders: ["Content-Type", "Authorization"],
+	credentials: true,
+  }));
 
 mongoose.connect(process.env.mongo_connection, {
   useNewUrlParser: true,
