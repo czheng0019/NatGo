@@ -21,6 +21,7 @@ app.use((req, res, next) => {
 	}
 	next();
 });
+app.options('*', cors());
 
 mongoose.connect(process.env.REACT_APP_mongo_connection, {
   useNewUrlParser: true,
