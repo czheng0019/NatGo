@@ -5,9 +5,6 @@ import {
 	BrowserRouter as Router,
 	Routes,
 	Route,
-	Link,
-	useNavigate,
-	useParams
 } from "react-router-dom";
 
 import SignIn from './routes/signin';
@@ -16,8 +13,6 @@ import ParkGallery from './routes/ParkGallery';
 import ParkDetail from './routes/ParkDetail';
 import UserGallery from './routes/UserGallery';
 import { Park } from './types';
-
-var secrets = require('./secrets.js');
   
 function App() {
 	const [parkList, setParkList] = useState<Park[]>([]);
@@ -44,7 +39,7 @@ function App() {
 
 const fetchAllParks = async (setParkList: React.Dispatch<React.SetStateAction<Park[]>>, setTotalParksCount: React.Dispatch<React.SetStateAction<number>>) => {
 	const parks: Park[] = [];
-	let url = "https://developer.nps.gov/api/v1/parks?limit=500&api_key=" + secrets.nps_api_key;
+	let url = `https://developer.nps.gov/api/v1/parks?limit=500&api_key=${process.env.nps_api_key}`;
 	
 	while (url) {
 		const response = await axios.get(url);
