@@ -7,23 +7,19 @@ import express from "express";
 import cors from "cors";
 
 var app = express(); 
-app.use(cors());
 dotenv.config();
 
 app.use(bodyParser.json());
 
-app.use((req, res, next) => {
-	res.setHeader('Access-Control-Allow-Origin', '*');
-	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
-	res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, Origin');
-	if (req.method === 'OPTIONS') {
-	  return res.sendStatus(200);
-	}
-	next();
-});
-app.options('*', cors());
+app.use(cors({
+	origin: '*',
+	methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+	allowedHeaders: ['Content-Type', 'Authorization', 'Origin'],
+	credentials: true,
+}));
+  
 
-mongoose.connect(process.env.REACT_APP_mongo_connection, {
+mongoose.connect(process.env.mongo_connection, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
