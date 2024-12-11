@@ -54,5 +54,10 @@
   },
   "devDependencies": {
     "@types/react-helmet": "^6.1.11"
-  }
+  },
+  "description": "Collect which National Parks you have been to, and learn about new ones to visit. Created using National Park Service API.",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

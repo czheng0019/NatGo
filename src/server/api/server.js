@@ -1,13 +1,15 @@
-import express from "express";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import bcrypt from "bcrypt";
-import cors from "cors";
 import User from "../models/user.js";
 import dotenv from 'dotenv'
-dotenv.config()
+import express from "express";
+import cors from "cors";
 
-const app = express();
+var app = express(); 
+app.use(cors());
+dotenv.config();
+
 app.use(bodyParser.json());
 
 app.use((req, res, next) => {
@@ -125,6 +127,10 @@ app.get("/users/:id", async (req, res) => {
     console.log(error);
     res.status(500).json({ message: "server error" });
   }
+});
+
+app.get("/ping", async (req, res) => {
+	res.status(200).json({ message: "hello world" });
 });
 
 const PORT = 1000;
