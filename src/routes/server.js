@@ -3,14 +3,13 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import bcrypt from "bcrypt";
 import cors from "cors";
-import secrets from "../secrets.js"
 import User from "../models/user.js"
 
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-mongoose.connect(secrets.mongo_connection, {
+mongoose.connect(process.env.mongo_connection, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true
 });

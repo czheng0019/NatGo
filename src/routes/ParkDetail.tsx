@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Park } from '../types';
 import '../styles/ParkDetail.css';
-var secrets = require('../secrets.js');
 
 interface ParkDetailProps {
     parkList: Park[];
@@ -19,7 +18,7 @@ const ParkDetail: React.FC<ParkDetailProps> = ({ parkList }) => {
 	useEffect(() => {
 		const fetchCollectedParks = async () => {
 			try {
-				const response = await fetch(`${secrets.backend_url}/users/${userId}/collectedParks`, {
+				const response = await fetch(`${process.env.backend_url}/users/${userId}/collectedParks`, {
 					method: "GET",
 				});
 
@@ -48,7 +47,7 @@ const ParkDetail: React.FC<ParkDetailProps> = ({ parkList }) => {
 		setChecked(newChecked);
 
 		try {
-			const response = await fetch(`${secrets.backend_url}/parks/:id`, {
+			const response = await fetch(`${process.env.backend_url}/parks/:id`, {
 				method: "PUT",
 				headers: {
 					"Content-Type": "application/json",

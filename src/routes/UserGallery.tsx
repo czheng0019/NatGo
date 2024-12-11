@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Park } from '../types';
 import '../styles/usergallery.css';
-var secrets = require('../secrets.js');
 
 
 interface UserGalleryProps {
@@ -20,7 +19,7 @@ const UserGallery: React.FC<UserGalleryProps> = ({ parkList, totalParkCount }) =
 	useEffect(() => {
 		const fetchUsername = async () => {
 			try {
-				const response = await fetch(`${secrets.backend_url}/users/${userId}`, {
+				const response = await fetch(`${process.env.backend_url}/users/${userId}`, {
 					method: "GET",
 				});
 
@@ -46,7 +45,7 @@ const UserGallery: React.FC<UserGalleryProps> = ({ parkList, totalParkCount }) =
 	useEffect(() => {
 		const fetchCollectedParks = async () => {
 			try {
-				const response = await fetch(`${secrets.backend_url}/users/${userId}/collectedParks`, {
+				const response = await fetch(`${process.env.backend_url}/users/${userId}/collectedParks`, {
 					method: "GET",
 				});
 
