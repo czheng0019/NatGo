@@ -39,7 +39,7 @@ function App() {
 
 const fetchAllParks = async (setParkList: React.Dispatch<React.SetStateAction<Park[]>>, setTotalParksCount: React.Dispatch<React.SetStateAction<number>>) => {
 	const parks: Park[] = [];
-	let url = `https://developer.nps.gov/api/v1/parks?limit=500&api_key=${process.env.nps_api_key}`;
+	let url = `https://developer.nps.gov/api/v1/parks?limit=500&api_key=${process.env.REACT_APP_nps_api_key}`;
 	
 	while (url) {
 		const response = await axios.get(url);

@@ -18,7 +18,7 @@ const ParkDetail: React.FC<ParkDetailProps> = ({ parkList }) => {
 	useEffect(() => {
 		const fetchCollectedParks = async () => {
 			try {
-				const response = await fetch(`${process.env.backend_url}/users/${userId}/collectedParks`, {
+				const response = await fetch(`${process.env.REACT_APP_backend_url}/users/${userId}/collectedParks`, {
 					method: "GET",
 				});
 
@@ -47,7 +47,7 @@ const ParkDetail: React.FC<ParkDetailProps> = ({ parkList }) => {
 		setChecked(newChecked);
 
 		try {
-			const response = await fetch(`${process.env.backend_url}/parks/:id`, {
+			const response = await fetch(`${process.env.REACT_APP_backend_url}/parks/:id`, {
 				method: "PUT",
 				headers: {
 					"Content-Type": "application/json",

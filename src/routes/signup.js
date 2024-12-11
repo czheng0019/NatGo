@@ -21,7 +21,7 @@ const Signup = () => {
     }
 
 	try {
-		const response = await fetch(`${process.env.backend_url}/signup`, {
+		const response = await fetch(`${process.env.REACT_APP_backend_url}/signup`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",

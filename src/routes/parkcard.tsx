@@ -23,7 +23,7 @@ const ParkCard = forwardRef<HTMLDivElement, ParkCardProps>(
 		useEffect(() => {
 			const fetchCollectedParks = async () => {
 				try {
-					const response = await fetch(`${process.env.backend_url}/users/${userId}/collectedParks`, {
+					const response = await fetch(`${process.env.REACT_APP_backend_url}/users/${userId}/collectedParks`, {
 						method: 'GET',
 					});
 
@@ -55,7 +55,7 @@ const ParkCard = forwardRef<HTMLDivElement, ParkCardProps>(
 			setCollectedParks(updatedCollectedParks);
 	
 			try {
-				const response = await fetch(`${process.env.backend_url}/parks/:id`, {
+				const response = await fetch(`${process.env.REACT_APP_backend_url}/parks/:id`, {
 					method: 'PUT',
 					headers: {
 						'Content-Type': 'application/json',

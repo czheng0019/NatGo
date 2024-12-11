@@ -20,7 +20,7 @@ const Signin = () => {
     }
 
 	try {
-		const response = await fetch(`${process.env.backend_url}`, {
+		const response = await fetch(`${process.env.REACT_APP_backend_url}`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
