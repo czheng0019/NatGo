@@ -10,7 +10,7 @@ dotenv.config()
 const app = express();
 app.use(bodyParser.json());
 app.use(cors({
-	origin: "*",
+	origin: "https://nat-go.vercel.app",
 }));
 
 mongoose.connect(process.env.REACT_APP_mongo_connection, {
