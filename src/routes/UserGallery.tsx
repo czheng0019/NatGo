@@ -21,6 +21,7 @@ const UserGallery: React.FC<UserGalleryProps> = ({ parkList, totalParkCount }) =
 			try {
 				const response = await fetch(`${process.env.REACT_APP_backend_url}/users/${userId}`, {
 					method: "GET",
+					credentials: "include",
 				});
 
 				const result = await response.json();
@@ -47,6 +48,7 @@ const UserGallery: React.FC<UserGalleryProps> = ({ parkList, totalParkCount }) =
 			try {
 				const response = await fetch(`${process.env.REACT_APP_backend_url}/users/${userId}/collectedParks`, {
 					method: "GET",
+					credentials: "include",
 				});
 
 				const result = await response.json();

@@ -20,6 +20,7 @@ const ParkDetail: React.FC<ParkDetailProps> = ({ parkList }) => {
 			try {
 				const response = await fetch(`${process.env.REACT_APP_backend_url}/users/${userId}/collectedParks`, {
 					method: "GET",
+					credentials: "include",
 				});
 
 				const result = await response.json();
@@ -52,7 +53,8 @@ const ParkDetail: React.FC<ParkDetailProps> = ({ parkList }) => {
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify({userId, parkId, newChecked})
+				body: JSON.stringify({userId, parkId, newChecked}),
+				credentials: "include",
 			});
 	
 			const result = await response.json();

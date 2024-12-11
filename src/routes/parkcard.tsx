@@ -25,6 +25,7 @@ const ParkCard = forwardRef<HTMLDivElement, ParkCardProps>(
 				try {
 					const response = await fetch(`${process.env.REACT_APP_backend_url}/users/${userId}/collectedParks`, {
 						method: 'GET',
+						credentials: "include",
 					});
 
 					const result = await response.json();
@@ -61,6 +62,7 @@ const ParkCard = forwardRef<HTMLDivElement, ParkCardProps>(
 						'Content-Type': 'application/json',
 					},
 					body: JSON.stringify({ userId, parkId, newChecked: !isChecked }),
+					credentials: "include",
 				});
 	
 				const result = await response.json();
