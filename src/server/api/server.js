@@ -9,9 +9,16 @@ dotenv.config()
 
 const app = express();
 app.use(bodyParser.json());
-app.use(cors({
-	origin: "https://nat-go.vercel.app",
-}));
+
+var cors_opt = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', "https://nat-go.vercel.app");
+    res.header('Access-Control-Allow-Methods', 'OPTIONS, GET, PUT, PATCH, POST, DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, X-Requested-With, Authorization');
+
+    next();
+}
+
+app.use(cors_opt);
 
 mongoose.connect(process.env.REACT_APP_mongo_connection, {
   useNewUrlParser: true,
