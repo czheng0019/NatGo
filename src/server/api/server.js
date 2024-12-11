@@ -45,6 +45,7 @@ app.post("/", async (req, res) => {
 		httpOnly: true,
 		secure: true,
 		sameSite: "None",
+		path: "/",
 	});
 
     res.status(200).json({ userId: user._id });
