@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import bcrypt from "bcrypt";
 import cors from "cors";
-import User from "../../models/user.js";
+import User from "../models/user.js";
 
 const app = express();
 app.use(bodyParser.json());
