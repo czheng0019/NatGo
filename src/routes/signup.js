@@ -35,6 +35,7 @@ const Signup = () => {
 
 		if (!response.ok) {
 			setError(result.message);
+			return;
 		}
 		const userId = result.userId;
 
